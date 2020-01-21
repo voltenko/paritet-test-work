@@ -1,4 +1,14 @@
 <template lang="pug">
+    .control
+        closed-control(
+            v-if="!isOpen"
+            @open="isOpen = true"
+        )
+
+        opened-control(
+            v-else
+        )
+
     
 </template>
 
@@ -10,9 +20,25 @@
         name: "Control",
 
         components: {ClosedControl, OpenedControl},
+
+        data() {
+            return {
+                isOpen: false,
+            }
+        },
+
+        props: {
+            open: {type: Boolean, default: false},
+        },
+
+        methods: {
+
+        }
     }
 </script>
 
 <style lang="sass" scoped>
+    .control
+
 
 </style>

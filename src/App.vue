@@ -1,6 +1,8 @@
 <template lang="pug">
   #app
-    h1 Тестовое задание для ПАРИТЕТ РДЦ
+    h1 Тестовое задание для ПАРИТЕТ РДЦ.
+    .container
+        control
 </template>
 
 <script>
@@ -13,5 +15,7 @@
 </script>
 
 <style lang="sass">
-
+    .container
+        width: 100px
+        margin: 0 auto
 </style>
