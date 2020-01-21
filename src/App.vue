@@ -15,7 +15,10 @@
 </script>
 
 <style lang="sass">
+    html, body, #app
+        height: 100%
+
     .container
-        width: 100px
+        width: 300px
         margin: 0 auto
 </style>
