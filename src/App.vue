@@ -3,10 +3,23 @@
     h1 Тестовое задание для ПАРИТЕТ РДЦ.
     .container
         control(
-            v-for="n in 3"
-            :key="n"
-            :open="focusedControl === n"
-            @focus="focusedControl = n"
+            :open="focusedControl === 1"
+            @focus="focusedControl = 1"
+            @focus-next="changeFocus"
+            @focus-previous="changeFocus"
+        )
+
+        control(
+            :open="focusedControl === 2"
+            :command="{title: 'Константа', callback: () => {}}"
+            @focus="focusedControl = 2"
+            @focus-next="changeFocus"
+            @focus-previous="changeFocus"
+        )
+
+        control(
+            :open="focusedControl === 3"
+            @focus="focusedControl = 3"
             @focus-next="changeFocus"
             @focus-previous="changeFocus"
         )

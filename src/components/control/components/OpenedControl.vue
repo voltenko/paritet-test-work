@@ -1,15 +1,21 @@
 <template lang="pug">
     .open-control
-        input.input(
-            ref="input"
-            v-model="currentValue"
-            @keydown.enter="save"
-            @keydown.tab="save"
-            @focus="$emit('focus')"
-        )
-        .buttons
-            button.button.increment-button(@click="increment")
-            button.button.decrement-button(@click="decrement")
+        .input-container
+            input.input(
+                v-model="currentValue"
+                ref="input"
+                @keydown.enter="save"
+                @keydown.tab="save"
+                @focus="$emit('focus')"
+            )
+            .buttons
+                button.button.increment-button(@click="increment")
+                button.button.decrement-button(@click="decrement")
+
+        .command-container(v-if="command")
+            button.button(
+                @click="command.callback"
+            ) {{command.title}}
 </template>
 
 <script>
@@ -23,7 +29,8 @@
         },
 
         props: {
-            value: {type: Number, default: 0}
+            value: {type: Number, default: 0},
+            command: {type: Object, default: null}
         },
 
         watch: {
@@ -31,7 +38,13 @@
                 this.currentValue = val;
             },
             currentValue(newVal, oldVal) {
-                if (/\D/.test(newVal)) this.currentValue = oldVal;
+                if (/\D/.test(newVal)) {
+                    this.currentValue = oldVal;
+                } else {
+                    if (+oldVal === 0) {
+                        this.currentValue = +String(newVal).slice(1);
+                    }
+                }
             }
         },
 
@@ -57,7 +70,7 @@
 </script>
 
 <style lang="sass" scoped>
-    .open-control
+    .input-container
         padding: 3px
         width: 150px
         display: flex
@@ -80,7 +93,7 @@
         border: none
         height: 7px
         width: 7px
-        background: #fff url("../../../assets/icons/arrow.svg") no-repeat
+        background: #fff
         background-size: 7px
         padding: 0
         margin-left: 2px
@@ -90,10 +103,15 @@
             outline: none
 
     .increment-button
+        background: url("../../../assets/icons/arrow.svg") no-repeat
         transform: rotate(-90deg)
 
     .decrement-button
+        background: url("../../../assets/icons/arrow.svg") no-repeat
         margin-top: 2px
         transform: rotate(90deg)
+
+    .command-container
+        padding-left: 2px
 
 </style>

@@ -7,12 +7,13 @@
     )
         closed-control(
             v-if="!isOpen"
-            @open="isOpen = true"
             :value="currentValue"
+            @open="isOpen = true"
         )
 
         opened-control(
             v-else
+            :command="command"
             @focus="$emit('focus')"
             @save="save($event)"
         )
@@ -37,13 +38,13 @@
         props: {
             open: {type: Boolean, default: false},
             value: {type: Number, default: 0},
+            command: {type: Object, default: null}
         },
 
         watch: {
             value(val) {
                 this.currentValue = val;
             },
-
             open(val) {
                 this.isOpen = val;
             },
@@ -67,5 +68,6 @@
 </script>
 
 <style lang="sass" scoped>
-
+    .control
+        width: 150px
 </style>

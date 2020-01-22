@@ -1,7 +1,7 @@
 <template lang="pug">
-    .closed-control(@click="$emit('open')")
+    .closed-control
         .number {{value}}
-        button.open-button
+        button.open-button(@click="$emit('open')")
 </template>
 
 <script>
