@@ -5,9 +5,9 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-      control1value: 1,
-      control2value: 2,
-      control3value: 3,
+      control1value: 0,
+      control2value: 0,
+      control3value: 0,
   },
   mutations: {
       setControl1Value: (state, num) => state.control1value = +num,
