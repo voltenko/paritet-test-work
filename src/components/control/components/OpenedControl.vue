@@ -4,6 +4,7 @@
             input.input(
                 v-model="currentValue"
                 ref="input"
+                @keydown="clear"
                 @keydown.enter="save"
                 @keydown.tab="save"
                 @focus="$emit('focus')"
@@ -24,7 +25,8 @@
 
         data() {
             return {
-                currentValue: 0
+                currentValue: 0,
+                isClean: false,
             }
         },
 
@@ -65,6 +67,12 @@
             },
             applyCommand() {
                 this.command.callback(this);
+            },
+            clear() {
+                if (!this.isClean) {
+                    this.isClean = true;
+                    this.currentValue = '';
+                }
             }
         },
     }
