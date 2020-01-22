@@ -104,11 +104,11 @@
             outline: none
 
     .increment-button
-        background: url("../../../assets/icons/arrow.svg") no-repeat
+        background: url("../../../assets/icons/arrow.svg") no-repeat center
         transform: rotate(-90deg)
 
     .decrement-button
-        background: url("../../../assets/icons/arrow.svg") no-repeat
+        background: url("../../../assets/icons/arrow.svg") no-repeat center
         margin-top: 2px
         transform: rotate(90deg)
 

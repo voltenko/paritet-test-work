@@ -1,6 +1,6 @@
 <template lang="pug">
     .closed-control
-        .number {{value}}
+        .number {{handledValue}}
         button.open-button(@click="$emit('open')")
 </template>
 
@@ -10,6 +10,12 @@
 
         props: {
             value: {type: Number, default: 0}
+        },
+
+        computed: {
+            handledValue() {
+                return String(this.value).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+            }
         }
     }
 </script>
