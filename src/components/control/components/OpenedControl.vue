@@ -14,7 +14,7 @@
 
         .command-container(v-if="command")
             button.button(
-                @click="command.callback"
+                @click="applyCommand"
             ) {{command.title}}
 </template>
 
@@ -42,6 +42,7 @@
                     this.currentValue = oldVal;
                 }
                 if (/^0\d+$/.test(newVal)) this.currentValue = +String(newVal).slice(1);
+                this.$emit('change', this.currentValue);
             }
         },
 
@@ -61,6 +62,9 @@
             },
             save() {
                 this.$emit('save', +this.currentValue);
+            },
+            applyCommand() {
+                this.command.callback(this);
             }
         },
     }

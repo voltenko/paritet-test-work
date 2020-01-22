@@ -14,8 +14,10 @@
         opened-control(
             v-else
             :command="command"
+            :value="currentValue"
             @focus="$emit('focus')"
             @save="save($event)"
+            @change="$emit('change', $event)"
         )
 </template>
 
@@ -54,9 +56,10 @@
             close() {
                 this.isOpen = false;
             },
-            save(event) {
-                this.currentValue = event;
+            save(val) {
+                this.currentValue = val;
                 this.close();
+                this.$emit('save', val)
             },
         },
 
