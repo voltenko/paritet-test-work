@@ -40,11 +40,8 @@
             currentValue(newVal, oldVal) {
                 if (/\D/.test(newVal)) {
                     this.currentValue = oldVal;
-                } else {
-                    if (+oldVal === 0) {
-                        this.currentValue = +String(newVal).slice(1);
-                    }
                 }
+                if (/^0\d+$/.test(newVal)) this.currentValue = +String(newVal).slice(1);
             }
         },
 
