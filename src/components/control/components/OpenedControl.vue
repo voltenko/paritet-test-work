@@ -5,8 +5,8 @@
             v-model="currentValue"
             @keydown.enter="save"
             @keydown.tab="save"
+            @focus="$emit('focus')"
         )
-
         .buttons
             button.button.increment-button(@click="increment")
             button.button.decrement-button(@click="decrement")
